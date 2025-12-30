@@ -6,13 +6,13 @@ from pathlib import Path
 # ----------------------------
 # Settings you can edit
 # ----------------------------
-IMAGE_GLOB = "../data/raw/*.jpg"
-SQUARE_SIZE_M = 0.024
+IMAGE_GLOB = "../data/raw_calibration/*.jpg"
+SQUARE_SIZE_M = 0.020  # Size of one square in meters
 OUTPUT_FILE = "calibration_standard.npz"
 
 # If you're unsure, leave this as None and it will auto-pick the best pattern.
 # If you're sure, set e.g. FORCE_PATTERN = (7, 7)
-FORCE_PATTERN = None
+FORCE_PATTERN = (9,6) # Set to None to auto-detect
 
 # Common inner-corner patterns to try
 PATTERNS_TO_TRY = [

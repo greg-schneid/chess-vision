@@ -170,12 +170,13 @@ def capture_from_camera(camera_index):
     
     return captured_frames
 
-def capture_image(detect_mode=False, default_camera=4):
+def capture_image(detect_mode=False, default_camera=4, calibration=False):
     """Detect cameras, show preview, and save selected image."""
     
     # Create images folder if it doesn't exist
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    images_dir = os.path.join(script_dir, 'data/raw')
+    folder = 'data/raw_calibration' if calibration else 'data/raw'
+    images_dir = os.path.join(script_dir, folder)
     os.makedirs(images_dir, exist_ok=True)
     
     captured_frames = []
@@ -277,6 +278,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Capture image from camera')
     parser.add_argument('-d', '--detect', action='store_true',
                         help='Enable detection mode to preview and select camera')
+    parser.add_argument('-c', '--calibration', action='store_true',
+                        help='Store images in calibration folder (data/raw_calibration)')
     args = parser.parse_args()
     
-    capture_image(detect_mode=args.detect)
+    capture_image(detect_mode=args.detect, calibration=args.calibration)
